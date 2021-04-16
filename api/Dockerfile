@@ -30,22 +30,25 @@ RUN set -eux; \
 		$PHPIZE_DEPS \
 		icu-dev \
 		libzip-dev \
-		postgresql-dev \
 		zlib-dev \
+		openssl-dev \
 	; \
 	\
 	docker-php-ext-configure zip; \
 	docker-php-ext-install -j$(nproc) \
+		bcmath \
 		intl \
-		pdo_pgsql \
 		zip \
 	; \
 	pecl install \
 		apcu-${APCU_VERSION} \
+		mongodb \
 	; \
 	pecl clear-cache; \
 	docker-php-ext-enable \
 		apcu \
+		bcmath \
+		mongodb \
 		opcache \
 	; \
 	\
