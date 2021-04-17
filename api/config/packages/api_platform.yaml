@@ -18,4 +18,4 @@ api_platform:
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
     show_webby: false
-    path_segment_name_generator: 'api_platform.path_segment_name_generator.underscore'
+    path_segment_name_generator: 'App\Operation\SingularPathSegmentNameGenerator'
