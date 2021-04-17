@@ -1,53 +1,37 @@
-<h1 align="center"><a href="https://api-platform.com"><img src="https://api-platform.com/logo-250x250.png" alt="API Platform"></a></h1>
+# Url shortener
 
-API Platform is a next-generation web framework designed to easily create API-first projects without compromising extensibility
-and flexibility:
+## Requirements
 
-* Design your own data model as plain old PHP classes or [**import an existing one**](https://api-platform.com/docs/schema-generator)
-  from the [Schema.org](https://schema.org/) vocabulary.
-* **Expose in minutes a hypermedia REST or a GraphQL API** with pagination, data validation, access control, relation embedding,
-  filters and error handling...
-* Benefit from Content Negotiation: [GraphQL](https://graphql.org), [JSON-LD](https://json-ld.org), [Hydra](https://hydra-cg.com),
-  [HAL](https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md), [JSONAPI](https://jsonapi.org/), [YAML](https://yaml.org/), [JSON](https://www.json.org/), [XML](https://www.w3.org/XML/) and [CSV](https://www.ietf.org/rfc/rfc4180.txt) are supported out of the box.
-* Enjoy the **beautiful automatically generated API documentation** ([Swagger](https://swagger.io/)/[OpenAPI](https://www.openapis.org/)).
-* Add [**a convenient Material Design administration interface**](https://api-platform.com/docs/admin) built with [React](https://reactjs.org/)
-  without writing a line of code.
-* **Scaffold fully functional Progressive-Web-Apps and mobile apps** built with [Next.js](https://api-platform.com/docs/client-generator/nextjs/) (React),
-[Nuxt.js](https://api-platform.com/docs/client-generator/nuxtjs/) (Vue.js) or [React Native](https://api-platform.com/docs/client-generator/react-native/)
-thanks to [the client generator](https://api-platform.com/docs/client-generator/) (a Vue.js generator is also available).
-* Install a development environment and deploy your project in production using **[Docker](https://api-platform.com/docs/distribution)**
-and [Kubernetes](https://api-platform.com/docs/deployment/kubernetes).
-* Easily add **[OAuth](https://oauth.net/) authentication**.
-* Create specs and tests with **[a developer friendly API testing tool](https://api-platform.com/docs/distribution/testing/)*.
+1. Ability to create, read and delete shortened URLs,
+2. Written in PHP and Symfony,
+3. API endpoints should be located under /api.
+4. Redirection should take place with the simplest URL possible (/{id})
+5. Code should be accompanied by a reasonable test suite.
+6. Code and interfaces are well-documented.
+7. *(optional)* Redirections should be counted and the visitor count should be available through API.
+8. *(optional)* Make filters available in collection endpoint.
+9. *(optional)* Authorization and authentication may be left unaddressed in the project.
 
-[![GitHub Actions](https://github.com/api-platform/core/workflows/CI/badge.svg)](https://github.com/api-platform/core/actions?workflow=CI)
-[![Codecov](https://codecov.io/gh/api-platform/core/branch/master/graph/badge.svg)](https://codecov.io/gh/api-platform/core/branch/master)
-[![SymfonyInsight](https://insight.symfony.com/projects/92d78899-946c-4282-89a3-ac92344f9a93/mini.svg)](https://insight.symfony.com/projects/92d78899-946c-4282-89a3-ac92344f9a93)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/api-platform/core/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/api-platform/core/?branch=master)
+## Design decisions
 
-The official project documentation is available **[on the API Platform website](https://api-platform.com)**.
+1. Shortened url should consist only of numbers and consonants to avoid meaningful and offending phrases.
+2. Chosen name for the url shortening objects' class is "Shorten". This allows the creation endpoint to be most straightforward (POST /shorten) and serves as a nice and short nickname 
+3. API endpoints are named after singular form of the entities they represent – this is a personal preference of the author.
+4. ApiPlatform was used as a developer-friendly way of achieving the high documentation expectations and ease of adding new features.
+5. Unnecessary features were removed from the basic distribution of ApiPlatform to minimise the potential attack surface of the system.
 
-API Platform embraces open web standards (OpenAPI, RDF/JSON-LD/Hydra, GraphQL, JSON:API, HAL, OAuth...) and the
-[Linked Data](https://www.w3.org/standards/semanticweb/data) movement. Your API will automatically expose structured data
-in Schema.org / JSON-LD. It means that your API Platform application is usable **out of the box** with technologies of
-the semantic web.
+## Usage
 
-It also means that **your SEO will be improved** because **[Google leverages these formats](https://developers.google.com/search/docs/guides/intro-structured-data)**.
+Use `docker-compose up --build` to build the project for the first time and run it. To deploy it, steps described in the ApiPlatform https://api-platform.com/docs/deployment/ should be taken.
 
-Last but not least, the server component of API Platform is built on top of the [Symfony](https://symfony.com) framework,
-while client components leverage [React](https://reactjs.org/) (a [Vue.js](https://vuejs.org/) flavor is also available).
-It means that you can:
+The following addresses should be used to interact with the shortener:
 
-* Use **thousands of Symfony bundles and React components** with API Platform.
-* Integrate API Platform in **any existing Symfony or React application**.
-* Reuse **all your Symfony and React skills**, benefit of the incredible amount of documentation available.
-* Enjoy the popular [Doctrine ORM](https://www.doctrine-project.org/projects/orm.html) (used by default, but fully optional:
-  you can use the data provider you want, including but not limited to MongoDB and Elasticsearch)
+| verb | address                              | description                                |
+|------|--------------------------------------|--------------------------------------------|
+| GET  | http://localhost/docs                | API documentation generated with Swagger   |
+| POST | http://localhost/api/shorten         | Shorten an URL. Body: {"url":"url-string"} |
+| GET  | http://localhost/{id}                | Use shortened URL as a redirect            |
+| GET  | http://localhost/api/{id}            | See shortened URL data and a visitor count |
+|DELETE| http://localhost/api/{id}            | Remove shortened URL                       |
+| GET  | http://localhost/admin               | Use ApiPlatform-provided admin panel       |
 
-## Install
-
-[Read the official "Getting Started" guide](https://api-platform.com/docs/distribution).
-
-## Credits
-
-Created by [Kévin Dunglas](https://dunglas.fr). Commercial support available at [Les-Tilleuls.coop](https://les-tilleuls.coop).
