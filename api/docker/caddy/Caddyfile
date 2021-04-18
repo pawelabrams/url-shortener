@@ -15,9 +15,13 @@ log
 
 # Matches requests for HTML documents, for static files and for Next.js files,
 # except for known API paths and paths with extensions handled by API Platform
+
+# TODO: Consider whitelisting js app paths instead of placing an exception for every API endpoint.
+
 @pwa expression `(
         {header.Accept}.matches("\\btext/html\\b")
         && !{path}.matches("(?i)(?:^/docs|^/graphql|^/bundles/|^/_profiler|^/_wdt|\\.(?:json|html$|csv$|ya?ml$|xml$))")
+        && !{path}.matches("(?i)(?:^/[0-9BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz]{6,})")
     )
     || {path} == "/favicon.ico"
     || {path} == "/manifest.json"

@@ -3,13 +3,14 @@
 namespace App\Document;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\ShortenRepository;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ODM\Document
+ * @ODM\Document(repositoryClass=ShortenRepository::class)
  */
-#[ApiResource]
+#[ApiResource(itemOperations: ['get', 'delete'])]
 class Shorten
 {
     /**
