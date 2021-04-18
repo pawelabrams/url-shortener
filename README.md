@@ -35,3 +35,4 @@ The following addresses should be used to interact with the shortener:
 |DELETE| http://localhost/api/{id}            | Remove shortened URL                       |
 | GET  | http://localhost/admin               | Use ApiPlatform-provided admin panel       |
 
+Use `docker-compose exec php bin/test` to run the test suite on a running container. A separate MongoDB collection, `url-shortener-test` will be used.
