@@ -18,5 +18,4 @@ echo "---"
 echo "PHP CS Fixer:"
 echo "---"
 
-$(dirname "$DIR")/vendor/bin/php-cs-fixer fix src -v --dry-run --stop-on-violation --using-cache=no
-$(dirname "$DIR")/vendor/bin/php-cs-fixer fix tests -v --dry-run --stop-on-violation --using-cache=no
+$(dirname "$DIR")/vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no

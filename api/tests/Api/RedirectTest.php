@@ -14,7 +14,7 @@ class RedirectTest extends ApiTestCase
     {
         $client = static::createClient();
 
-        /** Permanent redirect when accessing URL: HTTP 308 */
+        /* Permanent redirect when accessing URL: HTTP 308 */
         $this->createShortenedUrl($client);
 
         // Find internal resource id (eg. "/api/shorten/00001P")
@@ -40,7 +40,7 @@ class RedirectTest extends ApiTestCase
     }
 
     /**
-     * Create a shortened URL not to depend on ShortenTest
+     * Create a shortened URL not to depend on ShortenTest.
      */
     private function createShortenedUrl($client): void
     {
@@ -51,4 +51,3 @@ class RedirectTest extends ApiTestCase
         $this->assertResponseStatusCodeSame(201);
     }
 }
-
