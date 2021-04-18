@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# TODO: This file is a stub for a larger test automation, e.g. using phing.
+
+DIR="$( cd "$( dirname "$0" )" &> /dev/null && pwd )"
+
+"$DIR"/console doctrine:mongodb:schema:drop --env=test
+"$DIR"/console doctrine:mongodb:schema:create --env=test
+
+"$DIR"/phpunit
