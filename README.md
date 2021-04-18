@@ -36,3 +36,4 @@ The following addresses should be used to interact with the shortener:
 | GET  | http://localhost/admin               | Use ApiPlatform-provided admin panel       |
 
 Use `docker-compose exec php bin/test` to run the test suite on a running container. A separate MongoDB collection, `url-shortener-test` will be used.
+In case there is a problem similar to "`composer install` required", clear Symfony-PHPUnit bridge's cache using `rm -rd bin/.phpunit` while in `api` directory on the container or host machine (whichever is applicable).
