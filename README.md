@@ -24,6 +24,8 @@
 
 Use `docker-compose up --build` to build the project for the first time and run it. To deploy it, steps described in the ApiPlatform https://api-platform.com/docs/deployment/ should be taken.
 
+When accessing the application for the first time in dev mode, there will be an error regarding a self-signed certificate. In prod, a bought certificate or a free (eg. Let's Encrypt) one should be used.
+
 The following addresses should be used to interact with the shortener:
 
 | verb | address                              | description                                |
@@ -34,6 +36,7 @@ The following addresses should be used to interact with the shortener:
 | GET  | http://localhost/api/{id}            | See shortened URL data and a visitor count |
 |DELETE| http://localhost/api/{id}            | Remove shortened URL                       |
 | GET  | http://localhost/admin               | Use ApiPlatform-provided admin panel       |
+| GET  | http://localhost/                    | A test webpage using the url shortener     |
 
 Use `docker-compose exec php bin/test` to run the test suite on a running container. A separate MongoDB collection, `url-shortener-test` will be used.
 In case there is a problem similar to "`composer install` required", clear Symfony-PHPUnit bridge's cache using `rm -rd bin/.phpunit` while in `api` directory on the container or host machine (whichever is applicable).

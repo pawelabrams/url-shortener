@@ -12,7 +12,7 @@ const AdminLoader = () => {
 const Admin = () => (
   <>
     <Head>
-      <title>API Platform Admin</title>
+      <title>Url shortener</title>
     </Head>
 
     <AdminLoader />
