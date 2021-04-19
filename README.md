@@ -19,6 +19,7 @@
 3. API endpoints are named after singular form of the entities they represent – this is a personal preference of the author.
 4. ApiPlatform was used as a developer-friendly way of achieving the high documentation expectations and ease of adding new features.
 5. Unnecessary features were removed from the basic distribution of ApiPlatform to minimise the potential attack surface of the system.
+6. Sequential URLs were used.
 
 ## Usage
 
@@ -40,3 +41,10 @@ The following addresses should be used to interact with the shortener:
 
 Use `docker-compose exec php bin/test` to run the test suite on a running container. A separate MongoDB collection, `url-shortener-test` will be used.
 In case there is a problem similar to "`composer install` required", clear Symfony-PHPUnit bridge's cache using `rm -rd bin/.phpunit` while in `api` directory on the container or host machine (whichever is applicable).
+
+## Ways to improve
+
+1. Generate only one shortened URL for every URL in the database – if there already is a shorten for a given URL, return it instead.
+2. Add an option to make URLs random.
+3. Add an option to make URLs generate upwards of a given value, so that there aren't any inconsistencies in the URL's length (with sequential IDs, the length is padded to at least 6 characters).
+4. If the app was a part of a larger structure, hexagonal architecture might be more beneficial than a slim directory structure.
