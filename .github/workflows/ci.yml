@@ -29,11 +29,7 @@ jobs:
                     esac
                   done
                   exit 1
-            - name: Check HTTP reachability
-              run: curl -v -o /dev/null http://localhost
-            - name: Check HTTPS reachability
-              run: curl  -vk -o /dev/null https://localhost
-            - name: PHPUnit
-              run: docker-compose exec -T php bin/phpunit
+            - name: PHP tests
+              run: docker-compose exec -T php bin/test
             - name: Jest
               run: docker-compose exec -T pwa yarn test --passWithNoTests
